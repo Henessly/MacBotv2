@@ -9,7 +9,7 @@ exports.run = async(client, message, args) => {
 			return message.channel.send(`You didn't provide any arguments, ${message.author}!`);
 			}
 	
-				message.channel.send(`${args[0]}`);
+				message.channel.send(`${args[0-100]}`);
 	}
 
 	if (message.member.roles.some(role => role.name === 'Admin')) {
@@ -20,6 +20,6 @@ exports.run = async(client, message, args) => {
 				return message.channel.send(`You didn't provide any arguments, ${message.author}!`);
 				}
 	
-					message.channel.send(`${args[0]}`);
+					message.channel.send(`${args[0-100]}`);
 	}
 }

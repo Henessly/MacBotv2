@@ -1,7 +1,7 @@
 
 exports.run = async(client, message, args) => {
     
-	if (message.member.roles.some(role => role.name === 'Mod')) {
+	if (message.member.roles.some(role => role.name === 'Moderator')) {
 		
 		message.delete(1000)
 			

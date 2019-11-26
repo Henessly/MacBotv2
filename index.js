@@ -30,13 +30,14 @@ fs.readdir("./commands/", (err, files) => {
         });
 });
 
+client.login(config.token);
 
 client.on("ready", () => {
-    console.log(`Online!`);
-    
-    client.user.setActivity("your data", {
-      type: "STREAMING",
-      url: "https://www.twitch.tv/macplaystv"
-    });
+    console.log("Online!");
+
+  client.user.setActivity("your data", {
+    type: "STREAMING",
+    url: "https://www.twitch.tv/macplaystv"
   });
-  
+});
+

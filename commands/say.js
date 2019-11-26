@@ -4,7 +4,7 @@ exports.run = async(client, message, args) => {
     
 	if (message.member.roles.some(role => role.name === 'Moderator')) {
 		
-		message.delete(500)
+		message.delete(200)
 			
 			if (!args.length) {
 			return message.channel.send(`You didn't provide any arguments, ${message.author}!`);

@@ -41,29 +41,26 @@ client.on("ready", () => {
   });
 });
 
-client.on('ready', async (first, last) => {
-  let guild = client.guilds.find(guild => guild.name === "Mac's TV Station");
-    setInterval(function () {
-      var memberCount = discord.bot.guilds.get(guild).members.size() 
-      var memberCountChannel = client.channels.get("604952771224928256");
-      memberCountChannel.setName(`Members: ${memberCount}`);
-    }, 1000)
+client.on('ready', message => {
+  let myGuild = client.guilds.get('538190725557518366');
+  let guildCount = myGuild.memberCount;
+  let memberCountChannel = myGuild.channels.get('604952771224928256');
+  memberCountChannel.setName('Members: ' + memberCount)
     })
 
-client.on('guildMemberAdd', async (first, last) => {
-  let guild = client.guilds.find(guild => guild.name === "Mac's TV Station");
-    setInterval(function () {
-      var memberCount = discord.bot.guilds.get(guild).members.size() 
-      var memberCountChannel = client.channels.get("604952771224928256");
-      memberCountChannel.setName(`Members: ${memberCount}`);
-    }, 1000)
-    });
-
-client.on('guildMemberRemove', async (first, last) => {
-  let guild = client.guilds.find(guild => guild.name === "Mac's TV Station");
-    setInterval(function () {
-      var memberCount = discord.bot.guilds.get(guild).members.size()  
-      var memberCountChannel = client.channels.get("604952771224928256");
-      memberCountChannel.setName(`Members: ${memberCount}`);
-    }, 1000)
+client.on('guildMemberRemove', message => {
+   let myGuild = client.guilds.get('538190725557518366');
+   let guildCount = myGuild.memberCount;
+   let memberCountChannel = myGuild.channels.get('604952771224928256');
+   memberCountChannel.setName('Members: ' + memberCount)
     })
+    
+ 
+client.on('guildMemberAdd', message => {
+  let myGuild = client.guilds.get('538190725557518366');
+  let guildCount = myGuild.memberCount;
+  let memberCountChannel = myGuild.channels.get('604952771224928256');
+  memberCountChannel.setName('Members: ' + memberCount)
+    })
+
+   

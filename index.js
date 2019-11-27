@@ -8,8 +8,9 @@ client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 client.events = new Discord.Collection();
 
-fs.readdir("./commands/", (err, files) => {
 
+fs.readdir("./commands/", (err, files) => {
+  //Commands "handler"
     if (err) return console.log(err);
     files.forEach(file => {
         if (!file.endsWith(".js")) return;
@@ -32,6 +33,7 @@ fs.readdir("./commands/", (err, files) => {
 
 client.login(config.token);
 
+//Activity
 client.on("ready", () => {
     console.log("Online!");
 
@@ -41,6 +43,7 @@ client.on("ready", () => {
   });
 });
 
+//Member Count
 client.on('ready', message => {
     let myGuild = client.guilds.get('538190725557518366');
     let guildCount = myGuild.memberCount;
@@ -62,3 +65,41 @@ client.on('ready', message => {
     let memberCountChannel = myGuild.channels.get('604952771224928256');
     memberCountChannel.setName('Members: ' + guildCount)
       })
+
+//auto mod
+client.on('message', message => {
+  if (message.content === `nigger`) {
+    message.delete(1)
+    message.channel.send(`Thats not wholesome 100, ${message.author}!`);
+  }});
+
+client.on('message', message => {
+  if (message.content === `nigga`) {
+    message.delete(1)
+    message.channel.send(`Thats not wholesome 100, ${message.author}!`);
+  }});
+
+client.on('message', message => {
+  if (message.content === `negro`) {
+    message.delete(1)
+    message.channel.send(`Thats not wholesome 100, ${message.author}!`);
+  }});
+
+client.on('message', message => {
+  if (message.content === `cunt`) {
+    message.delete(1)
+    message.channel.send(`Thats not wholesome 100, ${message.author}!`);
+  }});
+
+client.on('message', message => {
+  if (message.content === `faggot`) {
+    message.delete(1)
+    message.channel.send(`Thats not wholesome 100, ${message.author}!`);
+  }});
+
+client.on('message', message => {
+  if (message.content === `.automodtest`) {
+    message.delete(1)
+    message.channel.send(`Thats not wholesome 100, ${message.author}!`);
+  }});
+  

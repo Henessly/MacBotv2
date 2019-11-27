@@ -67,39 +67,25 @@ client.on('ready', message => {
       })
 
 //auto mod
-client.on('message', message => {
-  if (message.content === `nigger`) {
-    message.delete(1)
-    message.channel.send(`Thats not wholesome 100, ${message.author}!`);
-  }});
-
-client.on('message', message => {
-  if (message.content === `nigga`) {
-    message.delete(1)
-    message.channel.send(`Thats not wholesome 100, ${message.author}!`);
-  }});
-
-client.on('message', message => {
-  if (message.content === `negro`) {
-    message.delete(1)
-    message.channel.send(`Thats not wholesome 100, ${message.author}!`);
-  }});
-
-client.on('message', message => {
-  if (message.content === `cunt`) {
-    message.delete(1)
-    message.channel.send(`Thats not wholesome 100, ${message.author}!`);
-  }});
-
-client.on('message', message => {
-  if (message.content === `faggot`) {
-    message.delete(1)
-    message.channel.send(`Thats not wholesome 100, ${message.author}!`);
-  }});
-
-client.on('message', message => {
-  if (message.content === `.automodtest`) {
-    message.delete(1)
-    message.channel.send(`Thats not wholesome 100, ${message.author}!`);
-  }});
+client.on("message", message => {
   
+  const badWords = [
+    `nigger`,
+    `nigga`,
+    `negro`,
+    `cunt`,
+    `faggot`,
+    `.automodtest`
+  ];
+
+  //Compare the message against every item in the bad word list
+  for(let i = 0; i < badWords.length; i++)
+  {
+    if(message.content === badWords[i])
+    {
+      message.delete(1);
+      message.channel.send(`Thats not wholesome 100, ${message.author}!`);
+      break;
+    }
+  }
+});

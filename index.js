@@ -42,7 +42,7 @@ client.on("ready", () => {
 });
 
 client.on('ready', async (first, last) => {
-  const guild = client.guilds.get("538190725557518366");
+  let guild = client.guilds.find(guild => guild.name === "Mac's TV Station");
     setInterval(function () {
       var memberCount = discord.bot.guilds.get(guild).members.size() 
       var memberCountChannel = client.channels.get("604952771224928256");
@@ -51,7 +51,7 @@ client.on('ready', async (first, last) => {
     })
 
 client.on('guildMemberAdd', async (first, last) => {
-  const guild = client.guilds.get("538190725557518366");
+  let guild = client.guilds.find(guild => guild.name === "Mac's TV Station");
     setInterval(function () {
       var memberCount = discord.bot.guilds.get(guild).members.size() 
       var memberCountChannel = client.channels.get("604952771224928256");
@@ -60,7 +60,7 @@ client.on('guildMemberAdd', async (first, last) => {
     });
 
 client.on('guildMemberRemove', async (first, last) => {
-  const guild = client.guilds.get("538190725557518366");
+  let guild = client.guilds.find(guild => guild.name === "Mac's TV Station");
     setInterval(function () {
       var memberCount = discord.bot.guilds.get(guild).members.size()  
       var memberCountChannel = client.channels.get("604952771224928256");

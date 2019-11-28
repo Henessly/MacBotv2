@@ -84,7 +84,10 @@ client.on("message", message => {
     if(message.content === badWords[i])
     {
       message.delete(1);
-      message.channel.send(`Thats not wholesome 100, ${message.author}!`);
+      message.channel.send(`Thats not wholesome 100, ${message.author}!`)
+        .then(msg => {
+            msg.delete(10000)
+        });
       break;
     }
   }

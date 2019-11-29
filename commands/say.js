@@ -1,9 +1,10 @@
-
 const { RichEmbed } = require("discord.js");
 exports.run = async(client, message, args) => {
     
 	if (message.member.roles.some(role => role.name === 'Moderator')) {
-		
+		if (message.member.roles.some(role => role.name === 'Mega Furry'))
+      			return
+    	else {
 		message.delete(1)
 			
 			if (!args.length) {
@@ -22,6 +23,6 @@ exports.run = async(client, message, args) => {
 			  message.channel.send(args.join(" "));
 	}
 
-
+ }
 }
 }

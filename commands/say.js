@@ -2,7 +2,9 @@ const { RichEmbed } = require("discord.js");
 exports.run = async(client, message, args) => {
     
 	if (message.member.roles.some(role => role.name === 'Moderator')) {
-		if (message.member.roles.some(role => role.name === 'Mega Furry'))
+	if (message.member.roles.some(role => role.name === 'Mega Furry'))
+      			return
+	if (message.member.roles.some(role => role.name === 'Furry'))
       			return
     	else {
 		message.delete(1)

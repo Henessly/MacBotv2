@@ -131,7 +131,7 @@ client.on("messageReactionAdd",(reaction,user)=>{
     let role = reaction.message.guild.roles.find(r => r.name == 'Gamer');          
     reaction.message.guild.member(user).addRole(role).catch(console.error);
   }
-  if(reaction.emoji.name == '🐸'){
+  if(reaction.emoji.id == '645369444130095135'){
     let role = reaction.message.guild.roles.find(r => r.name == 'Memer');          
     reaction.message.guild.member(user).addRole(role).catch(console.error);
   }
@@ -139,7 +139,7 @@ client.on("messageReactionAdd",(reaction,user)=>{
     let role = reaction.message.guild.roles.find(r => r.name == 'Anime');          
     reaction.message.guild.member(user).addRole(role).catch(console.error);
   }
-  if(reaction.emoji.name == '🇷🇺'){
+  if(reaction.emoji.id == '632788377619660802'){
     let role = reaction.message.guild.roles.find(r => r.name == 'Communist');          
     reaction.message.guild.member(user).addRole(role).catch(console.error);
   }
@@ -201,7 +201,7 @@ client.on("messageReactionRemove",(reaction,user)=>{
     let role = reaction.message.guild.roles.find(r => r.name == 'Gamer');          
     reaction.message.guild.member(user).removeRole(role).catch(console.error);
   }
-  if(reaction.emoji.name == '645369444130095135'){
+  if(reaction.emoji.id == '645369444130095135'){
     let role = reaction.message.guild.roles.find(r => r.name == 'Memer');          
     reaction.message.guild.member(user).removeRole(role).catch(console.error);
   }
@@ -209,7 +209,7 @@ client.on("messageReactionRemove",(reaction,user)=>{
     let role = reaction.message.guild.roles.find(r => r.name == 'Anime');          
     reaction.message.guild.member(user).removeRole(role).catch(console.error);
   }
-  if(reaction.emoji.name == '632788377619660802'){
+  if(reaction.emoji.id == '632788377619660802'){
     let role = reaction.message.guild.roles.find(r => r.name == 'Communist');          
     reaction.message.guild.member(user).removeRole(role).catch(console.error);
   }

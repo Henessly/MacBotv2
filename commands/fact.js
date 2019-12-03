@@ -15,8 +15,7 @@ exports.run = async(client, message, args) => {
     "日本語は最もクールな言語です。",
     "waga baba bobo",
     "My two fathers are Keku and Henessly. 🏳️‍🌈",
-    "Koichi Hirose is best bot.",
-    
+    "Koichi Hirose is best bot." 
  ]   
   
   let fact = facts[Math.floor(Math.random() * facts.length - 1)];

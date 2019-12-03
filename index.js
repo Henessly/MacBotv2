@@ -2,6 +2,8 @@ const Discord = require("discord.js")
 const client = new Discord.Client();
 const fs = require("fs");
 const config = require('./config.json');
+const reactionRoles = require("./src/reactionRoles.js");
+const global = require('./global.js');
 
 
 client.commands = new Discord.Collection();
@@ -31,7 +33,6 @@ fs.readdir("./commands/", (err, files) => {
         });
 });
 
-client.login(config.token);
 
 //Activity
 client.on("ready", () => {
@@ -102,3 +103,32 @@ client.on('guildMemberAdd', member => {
   var role = member.guild.roles.find('name', 'Singers');
   member.addRole(role)
 })
+
+let colorReactionHandler = reactionRoles.ReactionRolesHandler();
+
+client.on("ready", async () => {
+});
+
+async function startup()
+{
+    await client.login(config.token);
+    global.client = client;
+
+
+    try
+    {
+        let message = await client.guilds.get("538190725557518366").channels.get("611079594614718485").fetchMessage("651134649141166103");
+
+        colorReactionHandler.createFromExisting(
+            message,
+            reactionRoles.getRoleIDsByName("538190725557518366", ["Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "Black", "White"]),
+            ["%F0%9F%94%B4", "%F0%9F%9F%A0", "%F0%9F%9F%A1", "%F0%9F%9F%A2", "%F0%9F%94%B5", "%F0%9F%9F%A3", "%F0%9F%8C%B8", "%E2%9A%AA", "%E2%9A%AB"]
+        );
+    }
+    catch(e)
+    {
+        console.log("Unable to start color react-role manager: " + e);
+    }
+}
+
+startup();

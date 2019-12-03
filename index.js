@@ -286,3 +286,10 @@ client.on("message", message => {
     }
   }
 });
+
+// Autorole
+client.on('guildMemberAdd', member => {
+  console.log('User ' + member.user.username + " has joined the server!")
+  var role = member.guild.roles.find('name', 'Singers');
+  member.addRole(role)
+})

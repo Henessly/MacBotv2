@@ -81,7 +81,7 @@ client.on("messageDelete", async msg => {
     .addField("Message", msg.content)
     .setFooter(`Message ID: ${msg.id} | Author ID: ${msg.author.id}`);
 
-  let channel = msg.guild.channels.find(x => x.name === 'logs');
+  let channel = msg.guild.channels.find(x => x.name === 'mod-logs');
   channel.send({embed});
 });
 // Edited Message Log
@@ -95,7 +95,7 @@ client.on("messageUpdate", async (oldMessage, newMessage) => {
     .addField("New Message", newMessage.content)
     .setFooter(`Message ID: ${newMessage.id} | Author ID: ${newMessage.author.id}`);
   
-  let channel = newMessage.guild.channels.find(x => x.name === 'logs');
+  let channel = newMessage.guild.channels.find(x => x.name === 'mod-logs');
   channel.send({embed});
 });
 // Ban Log
@@ -105,7 +105,7 @@ client.on("guildBanAdd", function(guild, user){
     .setColor("#fc3c3c")
     .setField("User", user.tag)
     .setFooter(`User ID: ${user.id}`);
-  let channel = guild.channels.find(x => x.name === 'logs');
+  let channel = guild.channels.find(x => x.name === 'mod-logs');
   channel.send({embed});
 });
 // Unban Log
@@ -115,7 +115,7 @@ client.on("guildBanRemove", function(guild, user){
     .setColor("#fc3c3c")
     .setField("User", user.tag)
     .setFooter(`User ID: ${user.id}`);
-  let channel = guild.channels.find(x => x.name === 'logs');
+  let channel = guild.channels.find(x => x.name === 'mod-logs');
   channel.send({embed});
 });
 

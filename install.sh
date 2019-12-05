@@ -8,8 +8,4 @@ for i in $( ls "$dir" ); do
 	fi
 done
 
-packages="discord.js"
-
-for i in $packages; do
-	npm install "$i"
-done
+npm install discord.js ms

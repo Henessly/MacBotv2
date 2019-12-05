@@ -6,11 +6,10 @@ exports.run = async (client, message, args) => {
   let tomute = message.guild.member(
     message.mentions.users.first() || message.guild.members.get(args[0])
   );
-  let mutedrole = "Muted";
   if (!tomute) return message.reply("Couldn't find user.");
   if (tomute.hasPermission("MANAGE_MESSAGES"))
     return message.reply("Unable to mute!");
-  let muterole = message.guild.roles.find(`name`, mutedrole);
+  let muterole = message.guild.roles.find(`name`, "Muted");
   let mutetime = args[1];
   if (!mutetime) return message.reply("You didn't specify the mute length!");
   let mutereason = args.slice(2).join(" ");

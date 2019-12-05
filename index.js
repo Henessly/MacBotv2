@@ -86,6 +86,8 @@ client.on("messageDelete", async msg => {
 });
 // Edited Message Log
 client.on("messageUpdate", async (oldMessage, newMessage) => {
+ if(oldMessage == newMessage) return;
+ if(oldMessage == "") oldMessage = "<empty>";
   let embed = new Discord.RichEmbed()
     .setTitle("**EDITED MESSAGE**")
     .setColor("#fc3c3c")

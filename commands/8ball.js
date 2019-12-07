@@ -5,7 +5,7 @@ exports.run = async(client, message, args) => {
         "It is certain.",
         "It is decidedly so.",
         "Without a doubt.",
-        "Yes - definitely",
+        "Yes - definitely.",
         "You may rely on it.",
         "As I see it, yes.",
         "Most likely.",
@@ -26,5 +26,5 @@ exports.run = async(client, message, args) => {
     ]
     let result = results[Math.floor(Math.random() * results.length - 1)];
 
-    message.channel.send("🎱 " + result)
+    message.channel.send("🎱 **" + result + "**")
 }

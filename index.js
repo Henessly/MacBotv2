@@ -44,6 +44,28 @@ client.on("ready", () => {
   });
 });
 
+//Member Count
+client.on('ready', message => {
+    let myGuild = client.guilds.get('538190725557518366');
+    let guildCount = myGuild.memberCount;
+    let memberCountChannel = myGuild.channels.get('604952771224928256');
+    memberCountChannel.setName('Members: ' + guildCount)
+      })
+  
+  client.on('guildMemberRemove', message => {
+     let myGuild = client.guilds.get('538190725557518366');
+     let guildCount = myGuild.memberCount;
+     let memberCountChannel = myGuild.channels.get('604952771224928256');
+     memberCountChannel.setName('Members: ' + guildCount)
+      })
+      
+   
+  client.on('guildMemberAdd', message => {
+    let myGuild = client.guilds.get('538190725557518366');
+    let guildCount = myGuild.memberCount;
+    let memberCountChannel = myGuild.channels.get('604952771224928256');
+    memberCountChannel.setName('Members: ' + guildCount)
+      })
 
 // Logs:
 // Deleted Message Log
@@ -64,8 +86,6 @@ client.on("messageDelete", async msg => {
 });
 // Edited Message Log
 client.on("messageUpdate", async (oldMessage, newMessage) => {
- if(oldMessage == newMessage) return;
- if(oldMessage == "") oldMessage = "<empty>";
   let embed = new Discord.RichEmbed()
     .setTitle("**EDITED MESSAGE**")
     .setColor("#fc3c3c")

@@ -26,6 +26,11 @@ exports.run = async(client, message, args) => {
     ]
     let result = results[Math.floor(Math.random() * results.length - 1)];
     client.startTyping(message.channel);
-    message.channel.send("🎱 **" + result + "**");
+
+    const embed = new Discord.RichEmbed()
+        .setDescription("🎱 **" + result + "**")
+        .setColor("#3f3d4a")
+    message.channel.send(embed);
+    
     client.stopTyping(message.channel);
 }

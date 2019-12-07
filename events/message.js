@@ -1,4 +1,4 @@
-let prefix = "."  
+let prefix = "?"  
 
  exports.run = async(client, message) => {
   if (message.author.bot) return;

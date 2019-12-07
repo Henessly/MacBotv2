@@ -44,28 +44,6 @@ client.on("ready", () => {
   });
 });
 
-//Member Count
-client.on('ready', message => {
-    let myGuild = client.guilds.get('538190725557518366');
-    let guildCount = myGuild.memberCount;
-    let memberCountChannel = myGuild.channels.get('604952771224928256');
-    memberCountChannel.setName('Members: ' + guildCount)
-      })
-  
-  client.on('guildMemberRemove', message => {
-     let myGuild = client.guilds.get('538190725557518366');
-     let guildCount = myGuild.memberCount;
-     let memberCountChannel = myGuild.channels.get('604952771224928256');
-     memberCountChannel.setName('Members: ' + guildCount)
-      })
-      
-   
-  client.on('guildMemberAdd', message => {
-    let myGuild = client.guilds.get('538190725557518366');
-    let guildCount = myGuild.memberCount;
-    let memberCountChannel = myGuild.channels.get('604952771224928256');
-    memberCountChannel.setName('Members: ' + guildCount)
-      })
 
 // Logs:
 // Deleted Message Log

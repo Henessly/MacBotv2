@@ -25,6 +25,7 @@ exports.run = async(client, message, args) => {
         ""
     ]
     let result = results[Math.floor(Math.random() * results.length - 1)];
-
-    message.channel.send("🎱 **" + result + "**")
+    client.startTyping(message.channel);
+    message.channel.send("🎱 **" + result + "**");
+    client.stopTyping(message.channel);
 }

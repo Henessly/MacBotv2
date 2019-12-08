@@ -27,7 +27,8 @@ exports.run = async(client, message, args) => {
     "I am hosted by the Postmaster DA of Montana",
     "I am a bot. Yes, people have asked that.",
     "Koichi Hirose is best bot.",
-    "Tim Sarcasm is a fat greasy idiot"
+    "Tim Sarcasm is a fat greasy idiot",
+    ""
  ]   
   
   let fact = facts[Math.floor(Math.random() * facts.length - 1)];

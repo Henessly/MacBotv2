@@ -3,6 +3,7 @@ const ms = require("ms");
 
 exports.run = async (client, message, args) => {
   // !mute @user [length] [reason]
+  if (message.member.roles.some(role => role.name === 'Moderator')) {
   let tomute = message.guild.member(
     message.mentions.users.first() || message.guild.members.get(args[0])
   );
@@ -31,4 +32,5 @@ exports.run = async (client, message, args) => {
   setTimeout(function() {
     tomute.removeRole(muterole.id);
   }, ms(mutetime));
+}
 };

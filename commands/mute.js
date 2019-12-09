@@ -3,12 +3,11 @@ const ms = require("ms");
 
 exports.run = async (client, message, args) => {
   // !mute @user [length] [reason]
-  if (message.member.roles.some(role => role.name === 'Moderator')) {
   let tomute = message.guild.member(
     message.mentions.users.first() || message.guild.members.get(args[0])
   );
   if (!tomute) return message.reply("Couldn't find user.");
-  if (tomute.hasPermission("MANAGE_MESSAGES"))
+  if (message.member.hasPermission("MANAGE_MESSAGES"))
     return message.reply("Unable to mute!");
   let muterole = message.guild.roles.find(`name`, "Muted");
   let mutetime = args[1];
@@ -32,5 +31,5 @@ exports.run = async (client, message, args) => {
   setTimeout(function() {
     tomute.removeRole(muterole.id);
   }, ms(mutetime));
-}
 };
+

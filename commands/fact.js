@@ -23,7 +23,6 @@ exports.run = async(client, message, args) => {
     "waga baba bobo",
     "maneatingwhale is best mod",
     "Big men fucking. Hot fucking with men all over. Hot sweaty men sex having sex all day.",
-    "My two fathers are Keku and Henessly. 🏳️‍🌈",
     "I am hosted by the Postmaster DA of Montana",
     "I am a bot. Yes, people have asked that.",
     "Koichi Hirose is best bot.",

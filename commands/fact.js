@@ -28,13 +28,13 @@ exports.run = async(client, message, args) => {
     "Koichi Hirose is best bot.",
     "Tim Sarcasm is a fat greasy idiot",
     "if you enjoy playing league of legends or osu you're objectively wrong",
-    "make mel mod",
+    "Mel best mod",
     "t̴͇̐h̵̆͝ȩ̵͆r̸̅̽è̷̕ ̴̪̎i̸͝ͅs̴̔͑ ̸͛͠n̸̪͊o̵̮͊ ̴́ͅr̶͔̈́e̸̓͌a̷͚̋s̵̗̐ǫ̸̔n̷̐͂ ̵̻̏t̸́̈́o̸̺̊ ̶̲͝c̸̽̍r̶͂̾ỹ̶̘,̴̦̂ ̴̉͑c̴͑͘h̷̛̳ǐ̸͋l̸͉͘d̸̫̓.̵͌̐ ̷̆̍t̷̂̕h̵̐͜e̵̺͝ ̴͗͑v̶̅̎ò̴̆i̴̥̔d̵͋̉ ̷̃̅ẇ̸̓ỉ̷̖l̴̰̄ḷ̷͂ ̴͑͒t̵̻̍à̶ke you soon.",
     "Link your discord to your twitch and get Twitch Sub role!",
     "hamburger",
     "crush my cock with a rock i must. maximum pain i must endure.",
     "Join Keku & Co.",
-    "Sheri Blossom is a furry whore",
+    "Sheri Blossom has divorced 8 times.",
     "try out .8ball",
     " "
   ]

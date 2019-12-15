@@ -7,7 +7,7 @@ import { client } from "../Discord-Bot-Core/bot";
 let colorReactionHandler = new reactionRoles.ReactionRolesHandler();
 let categoryRolesReactionHandler = new reactionRoles.ReactionRolesHandler();
 
-client.on("Ready", async () => {
+client.on("ready", async () => {
     try
     {
         let colorMsg = await (client.guilds.get("538190725557518366").channels.get("611079594614718485") as Discord.TextChannel).fetchMessage("651134649141166103");

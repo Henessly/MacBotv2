@@ -1,3 +1,7 @@
-node_modules
+/node_modules/
+
+/token.json
+/permissions.json
 /config.json
-/inspectorConfig.sh
+
+/bot.log

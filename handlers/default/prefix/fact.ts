@@ -1,7 +1,6 @@
-const Discord = require("discord.js")
+import * as Discord from "discord.js";
 
-exports.run = async(client, message, args) => {
-  let facts = [
+const facts = [
     "A Cow-Bison hybrid is called a beefalo.",
     "You are gay.",
     "*Friends* is not that good of a show.",
@@ -35,16 +34,25 @@ exports.run = async(client, message, args) => {
     "crush my cock with a rock i must. maximum pain i must endure.",
     "Join Keku & Co.",
     "Sheri Blossom has divorced 8 times.",
-    "try out .8ball",
-    " "
-  ]
-  
-  let fact = facts[Math.floor(Math.random() * facts.length - 1)];
-  
-  const Embed = new Discord.RichEmbed()
-    .setColor("#349eeb")
-    .setTitle("**Fact**")
-    .setDescription(fact);
-  message.channel.send(Embed)
-              
+    "try out .8ball"
+];
+
+module.exports = {
+    name: 'fact',
+    description: '',
+    aliases: [],
+    //Comment out permissions/channel/server requirements if you want it to run everywhere/by everyone/etc
+    // permissions: [],
+    // inChannelID: [],
+    // inChannelName: [],
+    // inServerID: [],
+    async execute(msg : Discord.Message, args : Array<string>) {
+        let fact = facts[Math.round(Math.random() * (facts.length - 1)) ];
+    
+        const Embed = new Discord.RichEmbed()
+            .setColor("#349eeb")
+            .setTitle("**Fact**")
+            .setDescription(fact);
+        msg.channel.send(Embed);
+    }
 }

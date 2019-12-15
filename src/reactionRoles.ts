@@ -1,12 +1,15 @@
-const global = require("./../global.js");
+import * as Discord from "discord.js";
+
+import {client} from "../Discord-Bot-Core/bot";
 
 //TODO: Save reaction handlers to a file/database/etc. to persist between reboots
 
-exports.getRoleIDsByName = function(serverID, roleList)
+//Takes an array of role names and returns a list of roleIDs corresponding to each role
+export function getRoleIDsByName(serverID : string, roleList : string[]) : string[]
 {
-    let server = global.client.guilds.get(serverID);
+    let server = client.guilds.get(serverID);
 
-    let listOut = [];
+    let listOut : string[] = [];
 
     roleList.forEach( roleName => {
         let role = server.roles.find( r => r.name == roleName);
@@ -17,16 +20,17 @@ exports.getRoleIDsByName = function(serverID, roleList)
     return listOut;
 }
 
-exports.getEmojiIdentifiersByName = function(emojiList)
+//Takes an array of emoji names and returns an array of emoji identifiers corresponding to each
+export function getEmojiIdentifiersByName(emojiList : string[]) : string[]
 {
-    let listOut = [];
+    let listOut : string[] = [];
 
-    global.client.emojis.tap( e => {
+    client.emojis.tap( e => {
         console.log(e);
     })
 
     emojiList.forEach( emojiName => {
-        let emoji = global.client.emojis.find( e => e.name == emojiName);
+        let emoji = client.emojis.find( e => e.name == emojiName);
         if(!emoji) throw new Error("Emoji \"" + emojiName + "\" not found!");
         listOut.push(emoji.identifier);
     });
@@ -35,38 +39,37 @@ exports.getEmojiIdentifiersByName = function(emojiList)
 }
 
 //Manages a set of reactions that users can use to sign up for roles
-exports.ReactionRolesHandler = function()
-{
+export class ReactionRolesHandler {
     //The emoji identifiers the bot uses - blue numbers 1-9 and A-K
-    let emojiButtonIdentifiers = ["1%E2%83%A3", "2%E2%83%A3", "3%E2%83%A3", "4%E2%83%A3", "5%E2%83%A3", "6%E2%83%A3", "7%E2%83%A3", "8%E2%83%A3", "9%E2%83%A3", "%F0%9F%87%A6", "%F0%9F%87%A7", "%F0%9F%87%A8", "%F0%9F%87%A9", "%F0%9F%87%AA", "%F0%9F%87%AB", "%F0%9F%87%AC", "%F0%9F%87%AD", "%F0%9F%87%AE", "%F0%9F%87%AF", "%F0%9F%87%B0"];    //A list of emoji used as reacts, used to map buttons to roles and vice versa
+    private emojiButtonIdentifiers = ["1%E2%83%A3", "2%E2%83%A3", "3%E2%83%A3", "4%E2%83%A3", "5%E2%83%A3", "6%E2%83%A3", "7%E2%83%A3", "8%E2%83%A3", "9%E2%83%A3", "%F0%9F%87%A6", "%F0%9F%87%A7", "%F0%9F%87%A8", "%F0%9F%87%A9", "%F0%9F%87%AA", "%F0%9F%87%AB", "%F0%9F%87%AC", "%F0%9F%87%AD", "%F0%9F%87%AE", "%F0%9F%87%AF", "%F0%9F%87%B0"];    //A list of emoji used as reacts, used to map buttons to roles and vice versa
 
-    let message;    //The message to watch for reacts on
-    let collector;  //The reaction collecto
-    let roles = [];      //The roles to assign
+    private message : Discord.Message;    //The message to watch for reacts on
+    private collector : Discord.ReactionCollector;  //The reaction collector
+    private roles : Discord.Role[] = [];      //The roles to assign
 
     //Sets up the reaction handler
     // `messageToWatch` is the message that people will react to, and the bot will listen to
     // `roleIDs` is an array of roles 
-    async function init(messageToWatch, roleIDs, emojiIdentifiers)
+    private async init(messageToWatch : Discord.Message, roleIDs : string[], emojiIdentifiers : string[])
     {
-        if(emojiIdentifiers != null) emojiButtonIdentifiers = emojiIdentifiers;
+        if(emojiIdentifiers != null) this.emojiButtonIdentifiers = emojiIdentifiers;
 
-        message = messageToWatch;
+        this.message = messageToWatch;
 
         //Translate the roleIDs into role objects
         for(let i = 0; i < roleIDs.length; i++)
         {
-            let role = message.channel.guild.roles.get(roleIDs[i]);
+            let role = (this.message.channel as Discord.GuildChannel).guild.roles.get(roleIDs[i]);
 
             if(role == undefined) throw new Error("Unable to find role with ID \"" + roleIDs[i] + "\"");
 
-            roles.push(role);
+            this.roles.push(role);
         }
 
         let tapPromises = [];
 
         //Clear any existing reactions
-        message.reactions.tap( async r => {
+        this.message.reactions.tap( async r => {
             tapPromises.push(new Promise( async (resolve, reject) => {
                 //"seed" our user list
                 await r.fetchUsers();
@@ -79,9 +82,9 @@ exports.ReactionRolesHandler = function()
                     //Clear out the users we just got
                     r.users.tap( async u => {
                         //If it's one of our reactions, make sure it's within the range we expect
-                        if(u.id == global.client.id)
+                        if(u.id == client.user.id)
                         {
-                            let reactID = emojiButtonIdentifiers.indexOf(r.emoji.identifier);
+                            let reactID = this.emojiButtonIdentifiers.indexOf(r.emoji.identifier);
 
                             if(reactID == -1)
                             {   //If the reaction is not present in the list
@@ -89,7 +92,7 @@ exports.ReactionRolesHandler = function()
                             }
                             else
                             {
-                                if(reactID < roles.length)
+                                if(reactID < this.roles.length)
                                 {
                                     return; //Exit without removing the react if it's one of the ones that should be there
                                 }
@@ -113,7 +116,7 @@ exports.ReactionRolesHandler = function()
         function isReactionPresent(identifier)
         {
             let present = false;
-            message.reactions.tap( r => {
+            this.message.reactions.tap( r => {
                 if(r.emoji.identifier == identifier) present = true;
             });
 
@@ -121,45 +124,45 @@ exports.ReactionRolesHandler = function()
         }
 
         //Make sure the reaction 'buttons' exist for each item
-        for(let i = 0; i < roles.length; i++)
+        for(let i = 0; i < this.roles.length; i++)
         {
-            if(! isReactionPresent(emojiButtonIdentifiers[i]))
+            if(! isReactionPresent(this.emojiButtonIdentifiers[i]))
             {
-                await message.react(emojiButtonIdentifiers[i]);
+                await this.message.react(this.emojiButtonIdentifiers[i]);
             }
         }
 
         //Setup a reaction collector to handle new reacts
-        collector = await message.createReactionCollector( () => true);
-        collector.on('collect', handleReact);
+        this.collector = await this.message.createReactionCollector( () => true);
+        this.collector.on('collect', this.handleReact);
         console.log("Collector created");
     }
 
     //Handles a event from the collector
-    async function handleReact(reactEvent)
+    private async handleReact(reactEvent : Discord.MessageReaction)
     {
         //TODO: do spam-detection here to cut people off if they interact too much
         reactEvent.users.tap( u => {
-            handleReactForUser(reactEvent, u);
+            this.handleReactForUser(reactEvent, u);
         });
     }
 
     //Handles the reaction for a given user, toggling the role they clicked as necessary
-    async function handleReactForUser(reactEvent, user)
+    private async handleReactForUser(reactEvent : Discord.MessageReaction, user : Discord.User)
     {
-        if(user.id == global.client.user.id) return; //Don't handle the bot's reactions
+        if(user.id == client.user.id) return; //Don't handle the bot's reactions
 
-        let id = emojiButtonIdentifiers.indexOf(reactEvent.emoji.identifier);
+        let id = this.emojiButtonIdentifiers.indexOf(reactEvent.emoji.identifier);
 
         if(
             id != -1                //Make sure the reaction corresponds to an ID
-            && id < roles.length     //Make sure the reaction corresponds to a role that exists
+            && id < this.roles.length     //Make sure the reaction corresponds to a role that exists
         )
         {
             console.log("Accepted reaction");
             //The role that corresponds to that reaction
-            let role = roles[id];
-            let guildMember = message.channel.guild.members.get(user.id);  //Convert our user into a guild-member
+            let role = this.roles[id];
+            let guildMember = (this.message.channel as Discord.GuildChannel).guild.members.get(user.id);  //Convert our user into a guild-member
             if(guildMember == undefined) throw new Error("The user who reacted could not be found in the guild's member list!");
 
             if(guildMember.roles.get(role.id) == undefined)
@@ -181,16 +184,14 @@ exports.ReactionRolesHandler = function()
     
     //Sends a new message and creates the prompt for it
     // 
-    this.createNew = async function(prompt, channel, roles, emojiIdentifiers)
+    async createNew(prompt, channel, roles, emojiIdentifiers)
     {
         throw new Error("Not yet implemented"); //TODO: Implimented
     }
 
     //Starts a reaction-role handler from an existing message (i.e. starting one after a reboot)
-    this.createFromExisting = async function(messageToWatch, roleIDs, emojiIdentifiers)
+    async createFromExisting(messageToWatch : Discord.Message, roleIDs : string[], emojiIdentifiers : string[])
     {
-        await init(messageToWatch, roleIDs, emojiIdentifiers);
+        await this.init(messageToWatch, roleIDs, emojiIdentifiers);
     }
-
-    return this;
 }

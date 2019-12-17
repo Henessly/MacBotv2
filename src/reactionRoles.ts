@@ -112,21 +112,16 @@ export class ReactionRolesHandler {
         await Promise.all(tapPromises);
         console.log("Done removing reactions");
 
-        //Returns true if the reaction identified by `identifier` is present on the message
-        function isReactionPresent(identifier)
-        {
-            let present = false;
-            this.message.reactions.tap( r => {
-                if(r.emoji.identifier == identifier) present = true;
-            });
-
-            return present;
-        }
-
         //Make sure the reaction 'buttons' exist for each item
         for(let i = 0; i < this.roles.length; i++)
         {
-            if(! isReactionPresent(this.emojiButtonIdentifiers[i]))
+            let present = false;
+
+            this.message.reactions.tap( r => {
+                if(r.emoji.identifier == this.emojiButtonIdentifiers[i]) present = true;
+            });
+
+            if(!present)
             {
                 await this.message.react(this.emojiButtonIdentifiers[i]);
             }
@@ -139,12 +134,14 @@ export class ReactionRolesHandler {
     }
 
     //Handles a event from the collector
-    private async handleReact(reactEvent : Discord.MessageReaction)
-    {
+    private handleReact = async (reactEvent : Discord.MessageReaction) => {
         //TODO: do spam-detection here to cut people off if they interact too much
-        reactEvent.users.tap( u => {
+        let arr : Discord.User[] = reactEvent.users.array();
+        for(let i = 0; i < arr.length; i++)
+        {
+            let u = arr[i];
             this.handleReactForUser(reactEvent, u);
-        });
+        }
     }
 
     //Handles the reaction for a given user, toggling the role they clicked as necessary

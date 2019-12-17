@@ -74,7 +74,7 @@ export class ReactionRolesHandler {
                 //"seed" our user list
                 await r.fetchUsers();
                 //Clear all users per-reaction (Loops bc we may need to fetch reacts in some cases)
-                while(r.users.size > 0)
+                do
                 {
                     let reactClearPromises = [];
                     await r.fetchUsers();
@@ -104,6 +104,7 @@ export class ReactionRolesHandler {
                     //Make sure all the reacts we got were cleared before we start fetching more
                     await Promise.all(reactClearPromises);
                 }
+                while(r.users.size > 1);
                 resolve();
             }));
         });

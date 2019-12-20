@@ -14,7 +14,7 @@ client.on("ready", async () => {
 
         colorReactionHandler.createFromExisting(
             colorMsg,
-            reactionRoles.getRoleIDsByName("538190725557518366", ["Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "Black", "White"]),
+            reactionRoles.getRoleIDsByName("538190725557518366", ["Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Black"]),
             ["%F0%9F%94%B4", "%F0%9F%9F%A0", "%F0%9F%9F%A1", "%F0%9F%9F%A2", "%F0%9F%94%B5", "%F0%9F%9F%A3", "%F0%9F%8C%B8", "%E2%9A%AA", "%E2%9A%AB"]
         );
 

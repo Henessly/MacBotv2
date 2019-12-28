@@ -6,8 +6,22 @@ const badWords = [
     `nigger`,
     `nigga`,
     `negro`,
+    `coon`,
+    `beaner`,
+    `zipperhead`,
+    `chink`,
     `cunt`,
     `faggot`,
+    `pussy`,
+    `vagina`,
+    `dick`,
+    `porn`,
+    `pron`,
+    `pr0n`,
+    `cunt`,
+    `horny`,
+    `sex`,
+    `cock`,
     `.automodtest`
 ];
 

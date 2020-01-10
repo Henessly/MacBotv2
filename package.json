@@ -11,6 +11,8 @@
   "dependencies": {
     "@types/node": "^12.12.24",
     "common-tags": "^1.8.0",
+    "database-js": "^3.0.9",
+    "database-js-mysql": "^1.1.3",
     "discord.js": "^11.5.1",
     "discord.js-commando": "^0.10.0",
     "fs": "0.0.1-security",

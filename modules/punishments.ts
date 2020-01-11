@@ -10,9 +10,12 @@ let connection : databasejs.Connection;
 //Describes a rule 
 export class rule
 {
-    ruleID : number;
-    rule : string;
-    points : number;
+    readonly ruleID : number;
+    ruleTitle : string;
+    ruleBody : string;
+    defaultPoints : number;
+    minPoints : number;
+    maxPoints : number;
 }
 
 export class punishmentInstance extends punishment

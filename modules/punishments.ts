@@ -1,6 +1,7 @@
 import * as databasejs from "database-js"
 import * as Discord from "discord.js"
 
+import * as types from "../src/types";
 import {client} from "../Discord-Bot-Core/bot";
 
 import * as dbConfig from "../dbConfig.json";
@@ -8,14 +9,24 @@ import * as dbConfig from "../dbConfig.json";
 let connection : databasejs.Connection;
 
 //Describes a rule 
-export class rule
+export class rule extends types.DatabaseLinkedObject
 {
-    readonly ruleID : number;
     ruleTitle : string;
     ruleBody : string;
     defaultPoints : number;
     minPoints : number;
     maxPoints : number;
+    ruleActive : boolean;
+
+    async refresh() : Promise<boolean>
+    {
+        return false;
+    }
+
+    async save() : Promise<boolean>
+    {
+        return false;
+    }
 }
 
 export class punishmentInstance extends punishment

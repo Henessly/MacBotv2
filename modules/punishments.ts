@@ -3,7 +3,7 @@ import * as Discord from "discord.js"
 
 import {client} from "../Discord-Bot-Core/bot";
 
-import * as dbConfig from "../dbConfig.json";
+// import * as dbConfig from "../dbConfig.json";
 
 let connection : databasejs.Connection;
 
@@ -11,7 +11,18 @@ let connection : databasejs.Connection;
 export class rule
 {
     //The rowID of the database item
-    readonly rowID : number;
+    readonly _rowID : number;
+
+
+
+    get rowID() : number
+    {
+        return this._rowID;
+    }
+    set rowID() : number
+    {
+        this._rowID
+    }
 
     ruleTitle : string;
     ruleBody : string;
@@ -41,24 +52,24 @@ export class rule
     }
 }
 
-export class punishmentInstance extends punishment
+export class punishmentInstance //extends punishment
 {
 
 }
 
-export async function connectDB()
-{
-    connection = new databasejs.Connection(
-        "mysql://"
-        + dbConfig.user
-        + ":" 
-        + dbConfig.password 
-        + "@"
-        + dbConfig.host
-        + "/"
-        + dbConfig.dbName
-    );
-}
+// export async function connectDB()
+// {
+//     connection = new databasejs.Connection(
+//         "mysql://"
+//         + dbConfig.user
+//         + ":" 
+//         + dbConfig.password 
+//         + "@"
+//         + dbConfig.host
+//         + "/"
+//         + dbConfig.dbName
+//     );
+// }
 
 export async function getUserPoints()
 {

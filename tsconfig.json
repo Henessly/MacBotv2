@@ -4,7 +4,7 @@
         "allowJs": true,
         "moduleResolution": "node",
         "resolveJsonModule": true,
-        "lib": ["ES2018", "DOM"],
+        "lib": ["ES2018", "DOM", "ES7"],
         "sourceMap": true
     },
     "include": [

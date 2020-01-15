@@ -23,16 +23,6 @@ export class rule extends DatabaseBackedObject
     minPoints : number;
     maxPoints : number;
     ruleActive : boolean;
-
-    //The userID of the user who created the rule
-    createdBy : string;
-    //The userID of the user who last modified the rule
-    modifiedBy : string;
-
-    //The time at which the rule was created
-    createdAt : Date;
-    //The time at which the rule was last modified
-    modifiedAt : Date;
 }
 
 export class punishmentInstance //extends punishment

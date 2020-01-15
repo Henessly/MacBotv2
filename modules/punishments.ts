@@ -2,26 +2,19 @@ import * as databasejs from "database-js"
 import * as Discord from "discord.js"
 
 import {client} from "../Discord-Bot-Core/bot";
+import { DatabaseBackedObject } from "../src/types";
 
 // import * as dbConfig from "../dbConfig.json";
 
 let connection : databasejs.Connection;
 
 //Describes a rule 
-export class rule
+export class rule extends DatabaseBackedObject
 {
-    //The rowID of the database item
-    readonly _rowID : number;
+    protected _rowID : number;
 
-
-
-    get rowID() : number
-    {
+    get rowID() : number {
         return this._rowID;
-    }
-    set rowID() : number
-    {
-        this._rowID
     }
 
     ruleTitle : string;
@@ -40,16 +33,6 @@ export class rule
     createdAt : Date;
     //The time at which the rule was last modified
     modifiedAt : Date;
-
-    async refresh() : Promise<boolean>
-    {
-        return false;
-    }
-
-    async save() : Promise<boolean>
-    {
-        return false;
-    }
 }
 
 export class punishmentInstance //extends punishment

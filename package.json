@@ -17,7 +17,7 @@
     "discord.js-commando": "^0.10.0",
     "fs": "0.0.1-security",
     "ms": "^2.1.2",
-    "ts-node": "^8.6.1",
+    "ts-node": "^8.6.2",
     "typescript": "^3.7.4"
   }
 }

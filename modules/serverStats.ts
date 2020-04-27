@@ -2,6 +2,8 @@ import {client} from "../Discord-Bot-Core/bot"
 
 async function updateMemberCount()
 {
+    return;
+    //TODO: we need to update this with the new target channel, if Mac still wants it
     try
     {
         let myGuild = client.guilds.get('538190725557518366');

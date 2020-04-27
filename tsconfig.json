@@ -1,20 +1,19 @@
 {
     "compilerOptions": {
-        "outDir": "./built",
         "allowJs": true,
-        "moduleResolution": "node",
+        "lib": ["ES2018", "DOM", "ES7"],
+        "module": "commonjs",
+        "moduleResolution": "Node",
+        "outDir": "./built",
         "resolveJsonModule": true,
-        "lib": ["ES2018", "DOM"],
-        "sourceMap": true
+        "sourceMap": true,
+        "target": "ES2020"
     },
     "include": [
         "./Discord-Bot-Core/**/*",
-        "./Discord-Bot-Core/**/*.json",
         "./handlers/**/*",
-        "./handlers/**/*.json",
         "./modules/**/*",
-        "./modules/**/*.json",
         "./src/**/*",
-        "./*.json"
+        "./**/*.json"
     ]
 }

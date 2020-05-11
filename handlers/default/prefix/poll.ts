@@ -10,16 +10,11 @@ module.exports = {
     // inChannelName: [],
     // inServerID: [],
     async execute(msg : Discord.Message, args : Array<string>) {
-        if (!args) return msg.reply("You must have something to vote for!")
-        msg.channel.bulkDelete(1)
+        if (!args) return msg.reply("You must have something to vote for!");
+        await msg.delete();
         const pollTopic = await msg.channel.send("Poll from <@" + msg.author.id + ">: " + msg.content.slice(6)) as Discord.Message;
         await pollTopic.react(`👍`);
         await pollTopic.react(`😐`);
         await pollTopic.react(`👎`);
-        // Create a reaction collector
-        const filter = (reaction) => reaction.emoji.name === '✅';
-        const collector = pollTopic.createReactionCollector(filter, { time: 15000 });
-        collector.on('collect', r => console.log(`Collected ${r.emoji.name}`));
-        collector.on('end', collected => console.log(`Collected ${collected.size} items`));
     }
 }

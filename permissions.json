@@ -1,6 +1,6 @@
 {
     "host" : [ "@zachary#7180" ],
     "devs" : [ "@zachary#7180", "@Henessly#0001" ],
-    "admins": [ "@admins"],
+    "admins": [ "@Admin"],
     "mods": [ "@moderator" ]
 }

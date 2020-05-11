@@ -2,6 +2,8 @@ import * as Discord from "discord.js";
 
 import {client} from "../Discord-Bot-Core/bot"
 
+const memberCountChannelPrefix = "member-count"
+
 async function updateMemberCount(target: Discord.Guild | Discord.GuildMember)
 {
     try
@@ -11,9 +13,9 @@ async function updateMemberCount(target: Discord.Guild | Discord.GuildMember)
         }
 
         let guildCount = target.memberCount;
-        let memberCountChannel = target.channels.find( ch => ch.name === "member-count");
+        let memberCountChannel = target.channels.find( ch => ch.name.startsWith(memberCountChannelPrefix));
         if(!memberCountChannel) return;
-        memberCountChannel.setName('Members: ' + guildCount);
+        memberCountChannel.setName(memberCountChannelPrefix + ': ' + guildCount);
     }
     catch(e)
     {

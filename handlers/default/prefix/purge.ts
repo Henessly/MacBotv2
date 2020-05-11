@@ -1,9 +1,5 @@
 import * as Discord from "discord.js";
 
-function sortMessagesByDate(messages: Discord.Message[]) {
-    
-}
-
 module.exports = {
     name: 'purge',
     description: 'Purges the last messages in the chat.  Arguments: Number of messages is required, the user to filter by is optional.',

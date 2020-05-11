@@ -4,7 +4,7 @@
   "description": "",
   "main": "Discord-Bot-Core/bot.ts",
   "scripts": {
-    "run": "node -r ts-node/register Discord-Bot-Core/bot.ts"
+    "start": "node -r ts-node/register Discord-Bot-Core/bot.ts"
   },
   "repository": {
     "url": "https://github.com/Henessly/MacBotv2"

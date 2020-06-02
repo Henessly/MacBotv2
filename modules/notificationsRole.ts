@@ -3,7 +3,7 @@ import * as Discord from "discord.js"
 import { ReactionRolesManager } from "../Discord-Bot-Core/src/reactionRoles";
 import { client } from "../Discord-Bot-Core/bot";
 
-const NOTIFICATIONS_ROLE = "Poggers role";
+const NOTIFICATIONS_ROLE = "Notifications";
 
 function getNotificationsRole(guild: Discord.Guild) {
 	return guild.roles.find( r => r.name === NOTIFICATIONS_ROLE);

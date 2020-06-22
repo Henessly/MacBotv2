@@ -22,4 +22,8 @@ client.on("ready", async() => {
 	const message = await rules.fetchMessage("709851615548407928");
 	if(reactionRolesManager) reactionRolesManager.stop();
 	reactionRolesManager = new ReactionRolesManager([getNotificationsRole(guild)], message, ["📣"]);
+
+	reactionRolesManager.on("roleChange", async (member: Discord.GuildMember, role: Discord.Role, added: boolean) => {
+		await member.send(`You have ${added ? "un" : "" }subscribed ${added ? "from" : "to"} stream notifications`);
+	});
 });

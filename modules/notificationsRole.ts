@@ -18,7 +18,7 @@ let reactionRolesManager: ReactionRolesManager;
 client.on("ready", async() => {
 	const guild = client.guilds.get("538190725557518366");
 	const rules = guild.channels.get("635872727986864132") as Discord.TextChannel;
-	
+
 	const message = await rules.fetchMessage("709851615548407928");
 	if(reactionRolesManager) reactionRolesManager.stop();
 	reactionRolesManager = new ReactionRolesManager([getNotificationsRole(guild)], message, ["📣"]);
